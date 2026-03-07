@@ -1,73 +1,31 @@
 pipeline {
     agent any
 
-    parameters{
-        string(name: 'NAME', defaultValue: 'World', description: 'whom should we greet?')
-        choice(name: 'ENV', choices: ['dev', 'stage', 'prod'], description: 'select environment')
-    }
-
-    environment {
-        APP_NAME = "DemoApp"
-        WELCOME = "Hello"
-
-    }
-
-
-    stages {          
-        // use any agent in the stage()
-        stage('stage 1: Basic print') {
+    stages {
+        stage('Build') {
             steps {
-                echo "${env.WELCOME}, ${params.NAME}!"
-                echo "App = ${env.APP_NAME}, Env = ${params.ENV}"
+                sh 'sleep 10'
+                echo 'Building...'
+                // Add your build steps here
             }
         }
-        // override agent for the stage
-        stage('stage 2: Override agent') {
-            agent { label 'linux' }
-            environment {
-                STAGE_MSG = "Running on Linux node"
-            }
-                steps {
-                    echo "${env.STAGE_MSG}"
-                    sh 'echo "This is a Linux node"'
-                }
-        }
-        stage('stage 3: Stage "Parameters" using input') {
+        stage('Test') {
             steps {
-                script {
-                    def userChoice = input(
-                        message: 'Choose whether to deploy now:',
-                        parameters: [
-                            booleanParam(name: 'DEPLOY_NOW', defaultValue: true, description: 'Deploy after build?'),
-                            string(name: 'VERSION', defaultValue: '1.0.0', description: 'Version to deploy')
-                        ]
-                    )
-                env.DEPLOY_NOW = userChoice.DEPLOY_NOW.toString()
-                env.VERSION = userChoice.VERSION
-            }
+                sh '''
+                    #!/bin/bash
+                    pwd
+                    ls -lrt
+                    sleep 5
+                '''
+                echo 'Testing...'
+                // Add your test steps here - This is sample for Python script
+                // batch '''
+                //     python script.py
+                // '''
 
-                echo "User chose to deploy: ${env.DEPLOY_NOW}, Version: ${env.VERSION}"
             }
         }
-
-        stage('Stage 4: Use variables') {
-            steps {
-
-                script() {
-                    def fullname = "${env.APP_NAME}-${env.VERSION}!"
-
-                    if (env.DEPLOY_NOW == 'true') {
-                        echo "Deploying ${fullname} to ${params.ENV}"
-                    } else {
-                        echo "Skipping deployment for ${fullname}"
-                    }
-                  
-                }
-
-
-            }
-            
-            }
+        stage('Deploy') {
             steps {
                 echo 'Deploying...'
                 // Add your deploy steps here
