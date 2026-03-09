@@ -23,7 +23,7 @@ pipeline {
         }
         // override agent for the stage
         stage('stage 2: Override agent') {
-            agent { label 'linux' }
+            agent { label 'slavenew1' }
             environment {
                 STAGE_MSG = "Running on Linux node"
             }
