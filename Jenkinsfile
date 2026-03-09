@@ -11,7 +11,7 @@ pipeline {
         }
 
 
-    stages {
+    // stages {
         stage('Build') {
             steps {
                 sh 'sleep 10'
