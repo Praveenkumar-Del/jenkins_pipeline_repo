@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+
+    stages{
+        stage ('Upstream Work') {
+            steps {
+                echo "This is the upstream workflow running"
+                sh 'sleep 5'
+            }
+        }   
+
+        stage('Trigger Downstream') {
+            steps {
+                echo "Triggering downstream job ..."
+                build job: 'downstream_workflow'
+            }
+        }
+    }
+}

@@ -1,0 +1,12 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Downstream Work') {
+            steps {
+                echo "Downstream pipeline was triggered by upstream"
+                sh 'sleep 5'
+            }
+        }
+    }
+}
