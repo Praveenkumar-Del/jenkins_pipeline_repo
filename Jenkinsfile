@@ -2,13 +2,13 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main',
-                url: 'https://github.com/Praveenkumar-Del/jenkins_pipeline_repo.git'
-                    }
-            }
-        }
+        // stage('Checkout') {
+        //     steps {
+        //         git branch: 'main',
+        //         url: 'https://github.com/Praveenkumar-Del/jenkins_pipeline_repo.git'
+        //             }
+        //     }
+        // }
 
     // stages {
         stage('Build') {
@@ -40,4 +40,5 @@ pipeline {
                 // Add your deploy steps here
             }
         }
+}
 }
