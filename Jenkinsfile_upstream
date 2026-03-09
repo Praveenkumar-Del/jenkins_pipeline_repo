@@ -12,7 +12,7 @@ pipeline {
         stage('Trigger Downstream') {
             steps {
                 echo "Triggering downstream job ..."
-                build job: 'downstream_workflow'
+                build job: 'downstream_job'
             }
         }
     }
