@@ -13,6 +13,13 @@ pipeline {
             steps {
                 echo "Triggering downstream job ..."
                 build job: 'downstream_job'
+
+                sh '''
+                #!/bin/bash
+                
+                pwd
+                ls -lrt
+                ''' 
             }
         }
     }
