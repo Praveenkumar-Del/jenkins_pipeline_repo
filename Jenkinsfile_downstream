@@ -5,7 +5,15 @@ pipeline {
         stage('Downstream Work') {
             steps {
                 echo "Downstream pipeline was triggered by upstream"
-                sh 'sleep 5'
+
+                sh '''
+                #!/bin/bash
+                
+                sleep 5 
+                pwd
+                ls -lrt
+                echo "This is downstream job running"
+                '''
             }
         }
     }
