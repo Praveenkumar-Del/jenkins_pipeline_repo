@@ -67,10 +67,11 @@ pipeline {
 
             }
             
-            }
-            steps {
-                echo 'Deploying...'
-                // Add your deploy steps here
-            }
+            // }
+            // steps {
+            //     echo 'Deploying...'
+            //     // Add your deploy steps here
+            // }
         }
+}
 }
