@@ -10,7 +10,6 @@ pipeline {
             }
         }
 
-
     // stages {
         stage('Build') {
             steps {
@@ -41,5 +40,4 @@ pipeline {
                 // Add your deploy steps here
             }
         }
-    }
 }
